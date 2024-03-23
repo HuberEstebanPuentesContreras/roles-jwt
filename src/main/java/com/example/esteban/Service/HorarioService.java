@@ -27,6 +27,7 @@ public class HorarioService {
 
     public void generarHorarioAutomaticamente() {
         List<Cursos> cursos = cursoService.all();
+        List<Profesor> profesores = profesorService.all();
         Random random = new Random();
 
         String[] diasSemanaArray = {"LUNES", "MARTES", "MIERCOLES", "JUEVES", "VIERNES"};
@@ -45,17 +46,19 @@ public class HorarioService {
                 horaFin = "21:00";
             }
 
-            List<Profesor> profesores = profesorService.all();
-            Profesor profesorAsignado = profesores.get(random.nextInt(profesores.size()));
-
-            Horario horario = new Horario();
-            horario.setCursos(curso);
-            horario.setProfesor(profesorAsignado);
-            horario.setDia(diaSemana);
-            horario.setHoraInicio(horaInicio);
-            horario.setHoraFin(horaFin);
-
-            horarioRepository.save(horario);
+            for (Profesor profesor : profesores) {
+                if (profesor.getEspecialidad() == curso.getEspecialidad()) {
+                    Profesor profesorAsignado = profesor;
+                    Horario horario = new Horario();
+                    horario.setCursos(curso);
+                    horario.setProfesor(profesorAsignado);
+                    horario.setDia(diaSemana);
+                    horario.setHoraInicio(horaInicio);
+                    horario.setHoraFin(horaFin);
+                    horarioRepository.save(horario);
+                    break;
+                }
+            }
         }
     }
 }
