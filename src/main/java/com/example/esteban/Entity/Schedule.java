@@ -15,31 +15,31 @@ import lombok.Data;
 
 @Data
 @Entity
-@Table(name = "horario")
-public class Horario implements Serializable{
+@Table(name = "schedule")
+public class Schedule implements Serializable{
 	
 	private final static long serialVersionUID = 1l;
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private Integer Id;
+	private Integer id;
 		
 	@ManyToOne(fetch = FetchType.EAGER)
-    @JoinColumn(name = "curso_id", nullable = false)
-    private Cursos cursos;
+    @JoinColumn(name = "course_id", nullable = false)
+    private Course course;
 
     @ManyToOne(fetch = FetchType.EAGER)
-    @JoinColumn(name = "profesor_id", nullable = false)
-    private Profesor profesor;
+    @JoinColumn(name = "teacher_id", nullable = false)
+    private Teacher teacher;
     
-    @Column(name = "dia", length = 50, nullable = false)
-	private String dia;
+    @Column(name = "day", length = 50, nullable = false)
+	private String day;
     
-    @Column(name = "hora_inicio", length = 50, nullable = false)
-	private String horaInicio;
+    @Column(name = "start_time", length = 50, nullable = false)
+	private String startTime;
     
-    @Column(name = "hora_fin", length = 50, nullable = false)
-	private String horaFin;
+    @Column(name = "end_time", length = 50, nullable = false)
+	private String endTime;
 
 
 }

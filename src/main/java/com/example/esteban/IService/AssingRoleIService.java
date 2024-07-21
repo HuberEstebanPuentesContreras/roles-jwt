@@ -3,16 +3,16 @@ package com.example.esteban.IService;
 import java.util.List;
 import java.util.Optional;
 
-import com.example.esteban.Entity.Usuario;
+import com.example.esteban.Entity.User;
 
 public interface AssingRoleIService {
 
-	public List<Usuario> all();
+	public List<User> all();
 	
 	
-	Optional<Usuario> findByOptional(String NumeroDocumento);
+	Optional<User> findByOptional(String documentNumber);
 	
-	public Usuario save(Usuario usuario);
+	public User save(User user);
 
 	
 }

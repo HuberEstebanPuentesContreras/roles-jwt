@@ -26,33 +26,33 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @AllArgsConstructor
 @Entity
-@Table(name="usuario")
-public class Usuario implements Serializable, UserDetails {
+@Table(name="user")
+public class User implements Serializable, UserDetails {
 
 	private final static long serialVersionUID = 1l;
 	
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private Integer Id;
+	private Integer id;
 	
 
-	@Column(name = "nombre", length = 50, nullable = false)
-	private String Nombre;
+	@Column(name = "name", length = 50, nullable = false)
+	private String name;
 	
-	@Column(name = "apellido", length = 50, nullable = false)
-	private String Apellido;
+	@Column(name = "last_name", length = 50, nullable = false)
+	private String lastName;
 	
-	@Column(name = "tipo_documento", length = 20, nullable = false)
-	private String TipoDocumento;
+	@Column(name = "document_type", length = 20, nullable = false)
+	private String documentType;
 	
-	@Column(name = "numero_documento", unique = true, length = 20, nullable = false)
-	private String numeroDocumento;
+	@Column(name = "document_number", unique = true, length = 20, nullable = false)
+	private String documentNumber;
 	
-	@Column(name = "edad", length = 3, nullable = false)
-	private String Edad;
+	@Column(name = "age", length = 3, nullable = false)
+	private String age;
 		
-	@Column(name = "telefono", length = 20, nullable = false)
-	private String Telefono;
+	@Column(name = "phone_number", length = 20, nullable = false)
+	private String phoneNumber;
 	
 	@Column(name = "email", nullable = false, unique = true,  length = 50)
 	private String email;

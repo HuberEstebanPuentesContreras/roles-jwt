@@ -12,24 +12,24 @@ import lombok.Data;
 
 @Data
 @Entity
-@Table(name = "especialidad")
-public class Especialidad implements Serializable{
+@Table(name = "specialty")
+public class Specialty implements Serializable{
 	
 	private final static long serialVersionUID = 1l;
 	
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private Integer Id;
+	private Integer id;
 	
-	@Column(name = "codigo", length = 4, nullable = false, unique = true)
-	private String Codigo;
+	@Column(name = "code", length = 4, nullable = false, unique = true)
+	private String code;
 	
-	@Column(name = "nombre", length = 50, nullable = false, unique = true)
-	private String Nombre;
+	@Column(name = "name", length = 50, nullable = false, unique = true)
+	private String name;
 	
-	@Column(name = "descripcion", length = 100, nullable = false)
-	private String Descripcion;
+	@Column(name = "description", length = 100, nullable = false)
+	private String description;
 
-	public Especialidad() {
+	public Specialty() {
     }
 }

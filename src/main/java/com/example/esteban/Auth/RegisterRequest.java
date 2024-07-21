@@ -10,12 +10,12 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @AllArgsConstructor
 public class RegisterRequest {
-	String nombre;
-    String apellido;
-    String tipo_documento;
-    String numero_documento;
-    String edad;
-    String telefono;
+	String name;
+    String lastName;
+    String documentType;
+    String documentNumber;
+    String age;
+    String phoneNumber;
     String email;
     String password;
 }

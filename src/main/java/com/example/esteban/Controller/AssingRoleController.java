@@ -17,8 +17,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.example.esteban.Entity.Usuario;
-import com.example.esteban.IService.AssingRoleIService;
+import com.example.esteban.Entity.User;
+import com.example.esteban.Service.AssingRoleService;
 
 
 @RestController
@@ -27,42 +27,42 @@ import com.example.esteban.IService.AssingRoleIService;
 public class AssingRoleController {
 
 	@Autowired
-    private AssingRoleIService service;
+    private AssingRoleService service;
 
 	@GetMapping
-	public List<Usuario> all() {
+	public List<User> all() {
 		return service.all();
 	}
 	
-    @GetMapping("{NumeroDocumento}")
-    public ResponseEntity<?> findByCedula(@PathVariable String NumeroDocumento) {
-    	Optional<Usuario> optionalUsuario = service.findByOptional(NumeroDocumento);
-    	if (optionalUsuario.isPresent()) {
-            Usuario usuario = optionalUsuario.get();
+    @GetMapping("{documentNumber}")
+    public ResponseEntity<?> findByCedula(@PathVariable String documentNumber) {
+    	Optional<User> optionalUser = service.findByOptional(documentNumber);
+    	if (optionalUser.isPresent()) {
+            User user = optionalUser.get();
             Map<String, Object> response = new HashMap<>();
-            response.put("id", usuario.getId());
-            response.put("nombre", usuario.getNombre());
-            response.put("apellido", usuario.getApellido());
-            response.put("Numero Documento", usuario.getNumeroDocumento());
-            response.put("role", usuario.getRole());
+            response.put("id", user.getId());
+            response.put("nombre", user.getName());
+            response.put("apellido", user.getLastName());
+            response.put("Numero Documento", user.getDocumentNumber());
+            response.put("role", user.getRole());
             return ResponseEntity.ok(response);
         } else {
             return ResponseEntity.notFound().build();
         }
     }
     
-    @PutMapping("{NumeroDocumento}")
+    @PutMapping("{documentNumber}")
 	@ResponseStatus(code = HttpStatus.CREATED)
-	public Usuario update(@PathVariable String NumeroDocumento, @RequestBody Usuario usuario) {
-    	Optional<Usuario> op = service.findByOptional(NumeroDocumento);
+	public User update(@PathVariable String documentNumber, @RequestBody User user) {
+    	Optional<User> op = service.findByOptional(documentNumber);
 		
 		if (!op.isEmpty()) {
-			Usuario roleUpdate = op.get();
-			roleUpdate.setRole(usuario.getRole());
+			User roleUpdate = op.get();
+			roleUpdate.setRole(user.getRole());
 			return service.save(roleUpdate);
 		}
 		
-		return usuario;
+		return user;
 	}
 
     

@@ -3,16 +3,16 @@ package com.example.esteban.IService;
 import java.util.List;
 import java.util.Optional;
 
-import com.example.esteban.Entity.Especialidad;
+import com.example.esteban.Entity.Specialty;
 
-public interface EspecialidadIService {
+public interface SpecialtyIService {
 	
-	public List<Especialidad>all ();
+	public List<Specialty>all ();
 	
-	public Optional<Especialidad> findById(Integer Id);
+	public Optional<Specialty> findById(Integer id);
 	
-	public Especialidad save(Especialidad especialidad);
+	public Specialty save(Specialty specialty);
 	
-	public void delete(Integer Id);
+	public void delete(Integer id);
 
 }

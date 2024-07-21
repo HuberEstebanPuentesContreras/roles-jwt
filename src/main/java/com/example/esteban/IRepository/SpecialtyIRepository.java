@@ -2,8 +2,8 @@ package com.example.esteban.IRepository;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 
-import com.example.esteban.Entity.Especialidad;
+import com.example.esteban.Entity.Specialty;
 
-public interface EspecialidadIRepository extends JpaRepository<Especialidad, Integer>{
+public interface SpecialtyIRepository extends JpaRepository<Specialty, Integer>{
 
 }

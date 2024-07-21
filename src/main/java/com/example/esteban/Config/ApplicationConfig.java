@@ -11,7 +11,7 @@ import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 
-import com.example.esteban.IRepository.IRepositoryUsuario;
+import com.example.esteban.IRepository.UserIRepository;
 
 import lombok.RequiredArgsConstructor;
 
@@ -19,14 +19,16 @@ import lombok.RequiredArgsConstructor;
 @RequiredArgsConstructor
 public class ApplicationConfig {
 
-	private final IRepositoryUsuario iRepositoryUsuario;
+	private final UserIRepository iRepositoryUsuario;
 	
+	//Configuracion del AuthenticationManager
 	@Bean
     public AuthenticationManager authenticationManager(AuthenticationConfiguration config) throws Exception
     {
         return config.getAuthenticationManager();
     }
 
+	//Configuracion del Provedor, de detalles de usuario, codificador de contraseña
     @Bean
     public AuthenticationProvider authenticationProvider()
     {
@@ -36,11 +38,13 @@ public class ApplicationConfig {
         return authenticationProvider;
     }
 
+    //Implementacion de BCryptPasswordEncoder como implementacion de codificacion de contraseña
     @Bean
     public PasswordEncoder passwordEncoder() {
         return new BCryptPasswordEncoder();
     }
 
+    //Devuelve un servicio de detalles de usuario que busca usuarios por email en UserRepository
     @Bean
     public UserDetailsService userDetailService() {
         return email -> iRepositoryUsuario.findByEmail(email)

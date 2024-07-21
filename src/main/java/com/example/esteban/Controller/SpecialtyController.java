@@ -16,52 +16,52 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.example.esteban.Entity.Especialidad;
-import com.example.esteban.IService.EspecialidadIService;
+import com.example.esteban.Entity.Specialty;
+import com.example.esteban.Service.SpecialtyService;
 
 @CrossOrigin(origins ="*")
 @RestController
-@RequestMapping("api/security/especialidad")
-public class EspecialidadController {
+@RequestMapping("api/security/specialty")
+public class SpecialtyController {
 	
 	@Autowired
-	private EspecialidadIService service;
+	private SpecialtyService service;
 	
 	@GetMapping
-	public List<Especialidad> all() {
+	public List<Specialty> all() {
 		return service.all();
 	}
 	
-	@GetMapping("{Id}")
-	public Optional<Especialidad> show(@PathVariable Integer Id){
-		return service.findById(Id);
+	@GetMapping("{id}")
+	public Optional<Specialty> show(@PathVariable Integer id){
+		return service.findById(id);
 	}
 
 	@PostMapping
 	@ResponseStatus(code = HttpStatus.CREATED)
-	public Especialidad save(@RequestBody Especialidad especialidad) {
-		return service.save(especialidad);
+	public Specialty save(@RequestBody Specialty specialty) {
+		return service.save(specialty);
 	}
 	
-	@PutMapping("{Id}")
+	@PutMapping("{id}")
 	@ResponseStatus(code = HttpStatus.CREATED)
-	public Especialidad update(@PathVariable Integer Id, @RequestBody Especialidad especialidad) {
-		Optional<Especialidad> op = service.findById(Id);
+	public Specialty update(@PathVariable Integer id, @RequestBody Specialty specialty) {
+		Optional<Specialty> op = service.findById(id);
 		
 		if(!op.isEmpty()) {
-			Especialidad especialidadUpdate = op.get();
-			especialidadUpdate.setCodigo(especialidad.getCodigo());
-			especialidadUpdate.setNombre(especialidad.getNombre());
-			especialidadUpdate.setDescripcion(especialidad.getDescripcion());
-			return service.save(especialidadUpdate);
+			Specialty specialtyUpdate = op.get();
+			specialtyUpdate.setCode(specialty.getCode());
+			specialtyUpdate.setName(specialty.getName());
+			specialtyUpdate.setDescription(specialty.getDescription());
+			return service.save(specialtyUpdate);
 		}
 		
-		return especialidad;
+		return specialty;
 	}
 	
-	@DeleteMapping("{Id}")
+	@DeleteMapping("{id}")
 	@ResponseStatus(code = HttpStatus.NO_CONTENT)
-	public void delete(@PathVariable Integer Id) {
-		service.delete(Id);
+	public void delete(@PathVariable Integer id) {
+		service.delete(id);
 	}
 }

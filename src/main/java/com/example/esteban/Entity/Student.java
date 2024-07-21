@@ -16,16 +16,16 @@ import lombok.Data;
 @Data
 @Builder
 @Entity
-@Table(name = "estudiante")
-public class Estudiante implements Serializable{
+@Table(name = "student")
+public class Student implements Serializable{
 
 private final static long serialVersionUID = 1l;
 	
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private Integer Id;
+	private Integer id;
 	
 	@ManyToOne(fetch = FetchType.EAGER, optional = false)
-    @JoinColumn(name = "usuario_id", nullable = false)
-    private Usuario usuario_id;
+    @JoinColumn(name = "user_id", nullable = false)
+    private User user;
 }

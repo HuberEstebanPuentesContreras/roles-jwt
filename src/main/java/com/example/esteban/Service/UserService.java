@@ -5,29 +5,29 @@ import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.example.esteban.Entity.Usuario;
-import com.example.esteban.IRepository.UsuarioIRepository;
-import com.example.esteban.IService.UsuarioIService;
+import com.example.esteban.Entity.User;
+import com.example.esteban.IRepository.UserIRepository;
+import com.example.esteban.IService.UserIService;
 
 @Service
-public class UsuarioService implements UsuarioIService{
+public class UserService implements UserIService{
 
 	@Autowired
-	private UsuarioIRepository repository;
+	private UserIRepository repository;
 	
 	@Override
-	public Optional<Usuario> findByEmail(String email) {
+	public Optional<User> findByEmail(String email) {
 		return this.repository.findByEmail(email);
 	}
 	
 	@Override
-	public Usuario save(Usuario usuario) {
-		return this.repository.save(usuario);
+	public User save(User user) {
+		return this.repository.save(user);
 	}
 
 	@Override
-	public void delete(Integer Id) {
-		this.repository.deleteById(Id);
+	public void delete(Integer id) {
+		this.repository.deleteById(id);
 	}
 
 	

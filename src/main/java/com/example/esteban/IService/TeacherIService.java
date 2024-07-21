@@ -3,15 +3,15 @@ package com.example.esteban.IService;
 import java.util.List;
 import java.util.Optional;
 
-import com.example.esteban.Entity.Profesor;
+import com.example.esteban.Entity.Teacher;
 
-public interface ProfesorIService {
+public interface TeacherIService {
 
-	public List<Profesor>all ();
+	public List<Teacher>all ();
 	
-	public Optional<Profesor> findById(Integer Id);
+	public Optional<Teacher> findById(Integer id);
 	
-	public Profesor save(Profesor profesor);
+	public Teacher save(Teacher teacher);
 	
-	public void delete(Integer Id);
+	public void delete(Integer id);
 }

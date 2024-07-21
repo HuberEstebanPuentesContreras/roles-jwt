@@ -14,20 +14,20 @@ import lombok.Data;
 
 @Data
 @Entity
-@Table(name="profesor")
-public class Profesor implements Serializable {
+@Table(name="teacher")
+public class Teacher implements Serializable {
 	
 	private final static long serialVersionUID = 1l;
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private Integer Id;
+	private Integer id;
 		
 	@ManyToOne(fetch = FetchType.EAGER, optional = false)
-    @JoinColumn(name = "especialidad_id", nullable = false)	
-    private Especialidad especialidad;
+    @JoinColumn(name = "specialty_id", nullable = false)	
+    private Specialty specialty;
 	
 	@ManyToOne(fetch = FetchType.EAGER, optional = false)
-    @JoinColumn(name = "usuario_id", nullable = false)
-    private Usuario usuario;
+    @JoinColumn(name = "user_id", nullable = false)
+    private User user;
 }

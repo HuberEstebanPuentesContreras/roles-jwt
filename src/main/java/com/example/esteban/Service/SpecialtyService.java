@@ -6,34 +6,34 @@ import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.example.esteban.Entity.Especialidad;
-import com.example.esteban.IRepository.EspecialidadIRepository;
-import com.example.esteban.IService.EspecialidadIService;
+import com.example.esteban.Entity.Specialty;
+import com.example.esteban.IRepository.SpecialtyIRepository;
+import com.example.esteban.IService.SpecialtyIService;
 
 @Service
-public class EspecialidadService implements EspecialidadIService{
+public class SpecialtyService implements SpecialtyIService{
 
 	@Autowired
-	private EspecialidadIRepository repository;
+	private SpecialtyIRepository repository;
 	
 	@Override
-	public List<Especialidad> all() {
+	public List<Specialty> all() {
 		return this.repository.findAll();		
 	}
 	
 	@Override
-	public Optional<Especialidad> findById(Integer Id) {
-		return this.repository.findById(Id);
+	public Optional<Specialty> findById(Integer id) {
+		return this.repository.findById(id);
 	}
 	
 	@Override
-	public Especialidad save(Especialidad especialidad) {
-		return this.repository.save(especialidad);
+	public Specialty save(Specialty specialty) {
+		return this.repository.save(specialty);
 	}
 	
 	@Override
-	public void delete(Integer Id) {
-		this.repository.deleteById(Id);
+	public void delete(Integer id) {
+		this.repository.deleteById(id);
 	}
 	
 	

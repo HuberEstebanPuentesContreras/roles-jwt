@@ -17,58 +17,58 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.example.esteban.Entity.Usuario;
-import com.example.esteban.IService.UsuarioIService;
+import com.example.esteban.Entity.User;
+import com.example.esteban.Service.UserService;
 
 @CrossOrigin(origins ="*")
 @RestController
-@RequestMapping("api/security/usuario")
-public class UsuarioController {
+@RequestMapping("api/security/user")
+public class UserController {
 
 	@Autowired
-	private UsuarioIService service;
+	private UserService service;
 		
 	@GetMapping("{email}")
     public ResponseEntity<?> findByCedula(@PathVariable String email) {
-    	Optional<Usuario> optionalUsuario = service.findByEmail(email);
-    	if (optionalUsuario.isPresent()) {
-            Usuario usuario = optionalUsuario.get();
+    	Optional<User> optionalUser = service.findByEmail(email);
+    	if (optionalUser.isPresent()) {
+            User user = optionalUser.get();
             Map<String, Object> response = new HashMap<>();
-            response.put("id", usuario.getId());
-            response.put("nombre", usuario.getNombre());
-            response.put("apellido", usuario.getApellido());
-            response.put("TipoDocumento", usuario.getTipoDocumento());
-            response.put("NumeroDocumento", usuario.getNumeroDocumento());
-            response.put("Edad", usuario.getEdad());
-            response.put("Telefono", usuario.getTelefono());
-            response.put("email", usuario.getEmail());
+            response.put("id", user.getId());
+            response.put("nombre", user.getName());
+            response.put("apellido", user.getLastName());
+            response.put("TipoDocumento", user.getDocumentType());
+            response.put("NumeroDocumento", user.getDocumentNumber());
+            response.put("Edad", user.getAge());
+            response.put("Telefono", user.getPhoneNumber());
+            response.put("email", user.getEmail());
             return ResponseEntity.ok(response);
         } else {
             return ResponseEntity.notFound().build();
         }
     }
 	
-	@PutMapping("{Id}")
+	@PutMapping("{id}")
 	@ResponseStatus(code = HttpStatus.CREATED)
-	public Usuario update(@PathVariable String email, @RequestBody Usuario usuario) {
-		Optional<Usuario> op = service.findByEmail(email);
+	public User update(@PathVariable String email, @RequestBody User user) {
+		Optional<User> op = service.findByEmail(email);
 		
 		if(!op.isEmpty()) {
-			Usuario usuarioUpdate = op.get();
-			usuarioUpdate.setNombre(usuario.getNombre());
-			usuarioUpdate.setApellido(usuario.getApellido());
-			usuarioUpdate.setEdad(usuario.getEdad());
-			usuarioUpdate.setTipoDocumento(usuario.getTipoDocumento());
-			usuarioUpdate.setTelefono(usuario.getTelefono());
-			return service.save(usuarioUpdate);
+			User userUpdate = op.get();
+			userUpdate.setName(user.getName());
+			userUpdate.setLastName(user.getLastName());
+			userUpdate.setAge(user.getAge());
+			userUpdate.setDocumentType(user.getDocumentType());
+			userUpdate.setPhoneNumber(user.getPhoneNumber());
+			return service.save(userUpdate);
 		}
 		
-		return usuario;
+		return user;
 	}
 	
-	@DeleteMapping("{Id}")
+	@DeleteMapping("{id}")
 	@ResponseStatus(code = HttpStatus.NO_CONTENT)
-	public void delete(@PathVariable Integer Id) {
-		service.delete(Id);
+	public void delete(@PathVariable Integer id) {
+		service.delete(id);
 	}
 }

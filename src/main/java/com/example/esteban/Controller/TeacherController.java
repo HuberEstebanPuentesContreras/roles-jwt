@@ -16,52 +16,52 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.example.esteban.Entity.Profesor;
-import com.example.esteban.IService.ProfesorIService;
+import com.example.esteban.Entity.Teacher;
+import com.example.esteban.Service.TeacherService;
 
 @CrossOrigin(origins ="*")
 @RestController
-@RequestMapping("api/security/profesor")
-public class ProfesorController {
+@RequestMapping("api/security/teacher")
+public class TeacherController {
 
 	@Autowired
-	private ProfesorIService service;
+	private TeacherService service;
 	
 	@GetMapping
-	public List<Profesor> all(){
+	public List<Teacher> all(){
 		return service.all();
 	}
 	
-	@GetMapping("{Id}")
-	public Optional<Profesor> show(@PathVariable Integer Id){
-		return service.findById(Id);
+	@GetMapping("{id}")
+	public Optional<Teacher> show(@PathVariable Integer id){
+		return service.findById(id);
 	}
 	
 	@PostMapping
 	@ResponseStatus(code = HttpStatus.CREATED)
-	public Profesor save(@RequestBody Profesor profesor) {
-		return service.save(profesor);
+	public Teacher save(@RequestBody Teacher teacher) {
+		return service.save(teacher);
 	}
 	
-	@PutMapping("{Id}")
+	@PutMapping("{id}")
 	@ResponseStatus(code = HttpStatus.CREATED)
-	public Profesor update(@PathVariable Integer Id, @RequestBody Profesor profesor) {
-		Optional<Profesor> op = service.findById(Id);
+	public Teacher update(@PathVariable Integer id, @RequestBody Teacher teacher) {
+		Optional<Teacher> op = service.findById(id);
 		
 		if(!op.isEmpty()) {
-			Profesor profesorUpdate = op.get();
-			profesorUpdate.setEspecialidad(profesor.getEspecialidad());
-			profesorUpdate.setUsuario(profesor.getUsuario());
-			return service.save(profesorUpdate);
+			Teacher teacherUpdate = op.get();
+			teacherUpdate.setSpecialty(teacher.getSpecialty());
+			teacherUpdate.setUser(teacher.getUser());
+			return service.save(teacherUpdate);
 		}
 		
-		return profesor;
+		return teacher;
 	}
 	
-	@DeleteMapping("{Id}")
+	@DeleteMapping("{id}")
 	@ResponseStatus(code = HttpStatus.NO_CONTENT)
-	public void delete(@PathVariable Integer Id) {
-		service.delete(Id);
+	public void delete(@PathVariable Integer id) {
+		service.delete(id);
 	}
 	
 }

@@ -7,7 +7,7 @@ import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.example.esteban.Entity.Usuario;
+import com.example.esteban.Entity.User;
 import com.example.esteban.IRepository.AssingRoleIRepository;
 import com.example.esteban.IService.AssingRoleIService;
 
@@ -21,18 +21,18 @@ public class AssingRoleService implements AssingRoleIService{
     private AssingRoleIRepository assingRoleIRepository;
 
 	@Override
-	public List<Usuario> all() {
+	public List<User> all() {
 		return this.assingRoleIRepository.findAll();
 	}
 	
 	@Override
-	public Optional<Usuario> findByOptional(String NumeroDocumento) {
-		return this.assingRoleIRepository.findByNumeroDocumento(NumeroDocumento);
+	public Optional<User> findByOptional(String documentNumber) {
+		return this.assingRoleIRepository.findBydocumentNumber(documentNumber);
 	}
 
 	@Override
-	public Usuario save(Usuario usuario) {
-		return this.assingRoleIRepository.save(usuario);
+	public User save(User user) {
+		return this.assingRoleIRepository.save(user);
 	}
 	
 }

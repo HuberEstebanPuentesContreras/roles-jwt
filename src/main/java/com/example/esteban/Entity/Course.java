@@ -16,32 +16,32 @@ import lombok.Data;
 
 @Data
 @Entity
-@Table(name="cursos")
-public class Cursos implements Serializable{
+@Table(name="course")
+public class Course implements Serializable{
 	
 	private final static long serialVersionUID = 1l;
 	
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private Integer Id;
+	private Integer id;
 	
-	@Column(name = "codigo", length = 4, nullable = false, unique = true)
-	private String Codigo;
+	@Column(name = "code", length = 4, nullable = false, unique = true)
+	private String code;
 
-	@Column(name = "nombre", length = 50, nullable = false, unique = true)
-	private String Nombre;
+	@Column(name = "name", length = 50, nullable = false, unique = true)
+	private String name;
 	
-	@Column(name = "creditos", length = 50, nullable = false)
-	private String Creditos;
+	@Column(name = "credits", length = 50, nullable = false)
+	private String credits;
 	
-	@Column(name = "descripcion", length = 100, nullable = false)
-	private String Descripcion;
+	@Column(name = "description", length = 100, nullable = false)
+	private String description;
 	
 	@ManyToOne(fetch = FetchType.EAGER, optional = false)
-    @JoinColumn(name = "especialidad_id", nullable = false)
-    private Especialidad especialidad;
+    @JoinColumn(name = "specialty_id", nullable = false)
+    private Specialty specialty;
 	
-	public Cursos() {
+	public Course() {
     }
 	
 }

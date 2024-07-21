@@ -16,54 +16,54 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.example.esteban.Entity.Cursos;
-import com.example.esteban.IService.CursoIService;
+import com.example.esteban.Entity.Course;
+import com.example.esteban.Service.CourseService;
 
 @CrossOrigin(origins ="*")
 @RestController
-@RequestMapping("api/security/cursos")
-public class CursoController {
+@RequestMapping("api/security/course")
+public class CourseController {
 
 	@Autowired
-	private CursoIService service;
+	private CourseService service;
 	
 	@GetMapping
-	public List<Cursos> all(){
+	public List<Course> all(){
 		return service.all();
 	}
 	
-	@GetMapping("{Id}")
-	public Optional<Cursos> show(@PathVariable Integer Id){
-		return service.findById(Id);
+	@GetMapping("{id}")
+	public Optional<Course> show(@PathVariable Integer id){
+		return service.findById(id);
 	}
 	
 	@PostMapping
 	@ResponseStatus(code = HttpStatus.CREATED)
-	public Cursos save(@RequestBody Cursos cursos) {
-		return service.save(cursos);
+	public Course save(@RequestBody Course course) {
+		return service.save(course);
 	}
 	
-	@PutMapping("{Id}")
+	@PutMapping("{id}")
 	@ResponseStatus(code = HttpStatus.CREATED)
-	public Cursos update(@PathVariable Integer Id, @RequestBody Cursos cursos) {
-		Optional<Cursos> op = service.findById(Id);
+	public Course update(@PathVariable Integer id, @RequestBody Course course) {
+		Optional<Course> op = service.findById(id);
 		
 		if(!op.isEmpty()) {
-			Cursos cursosUpdate = op.get();
-			cursosUpdate.setCodigo(cursos.getCodigo());
-			cursosUpdate.setNombre(cursos.getNombre());
-			cursosUpdate.setCreditos(cursos.getCreditos());
-			cursosUpdate.setDescripcion(cursos.getDescripcion());
-			return service.save(cursosUpdate);
+			Course courseUpdate = op.get();
+			courseUpdate.setCode(course.getCode());
+			courseUpdate.setName(course.getName());
+			courseUpdate.setCredits(course.getCredits());
+			courseUpdate.setDescription(course.getDescription());
+			return service.save(courseUpdate);
 		}
 		
-		return cursos;
+		return course;
 	}
 	
-	@DeleteMapping("{Id}")
+	@DeleteMapping("{id}")
 	@ResponseStatus(code = HttpStatus.NO_CONTENT)
-	public void delete(@PathVariable Integer Id) {
-		service.delete(Id);
+	public void delete(@PathVariable Integer id) {
+		service.delete(id);
 	}
 
 }

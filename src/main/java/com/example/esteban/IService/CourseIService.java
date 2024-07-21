@@ -3,16 +3,16 @@ package com.example.esteban.IService;
 import java.util.List;
 import java.util.Optional;
 
-import com.example.esteban.Entity.Cursos;
+import com.example.esteban.Entity.Course;
 
-public interface CursoIService {
+public interface CourseIService {
 
-	public List<Cursos>all ();
+	public List<Course>all ();
 	
-	public Optional<Cursos> findById(Integer Id);
+	public Optional<Course> findById(Integer id);
 	
-	public Cursos save(Cursos cursos);
+	public Course save(Course course);
 	
-	public void delete(Integer Id);
+	public void delete(Integer id);
 
 }

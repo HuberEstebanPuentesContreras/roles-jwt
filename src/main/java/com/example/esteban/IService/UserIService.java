@@ -2,15 +2,15 @@ package com.example.esteban.IService;
 
 import java.util.Optional;
 
-import com.example.esteban.Entity.Usuario;
+import com.example.esteban.Entity.User;
 
 
-public interface UsuarioIService {
+public interface UserIService {
 	
-	Optional<Usuario> findByEmail(String email);
+	Optional<User> findByEmail(String email);
 	
-	public Usuario save(Usuario usuario);
+	public User save(User user);
 	
-	public void delete(Integer Id);
+	public void delete(Integer id);
 
 }
