@@ -48,24 +48,7 @@ public class UserController {
         }
     }
 	
-	@PutMapping("{id}")
-	@ResponseStatus(code = HttpStatus.CREATED)
-	public User update(@PathVariable String email, @RequestBody User user) {
-		Optional<User> op = service.findByEmail(email);
 		
-		if(!op.isEmpty()) {
-			User userUpdate = op.get();
-			userUpdate.setName(user.getName());
-			userUpdate.setLastName(user.getLastName());
-			userUpdate.setAge(user.getAge());
-			userUpdate.setDocumentType(user.getDocumentType());
-			userUpdate.setPhoneNumber(user.getPhoneNumber());
-			return service.save(userUpdate);
-		}
-		
-		return user;
-	}
-	
 	@DeleteMapping("{id}")
 	@ResponseStatus(code = HttpStatus.NO_CONTENT)
 	public void delete(@PathVariable Integer id) {
